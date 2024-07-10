@@ -15,6 +15,35 @@ const createProducts = async (req: Request, res: Response) => {
     throw new Error(`${error}`);
   }
 };
+const getAllProducts = async (req: Request, res: Response) => {
+  const result = await ProductsService.getProductsFromDB();
+  try {
+    res.status(200).json({
+      success: true,
+      message: "products retirved successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error(`${error}`);
+  }
+};
+const getSingleProducts = async (req: Request, res: Response) => {
+  const { productId } = req.params;
+  const result = await ProductsService.getSingleProductsFromDB(productId);
+  try {
+    res.status(200).json({
+      success: true,
+      message: "product retirved successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error(`${error}`);
+  }
+};
 export const ProductsController = {
   createProducts,
+  getAllProducts,
+  getSingleProducts,
 };

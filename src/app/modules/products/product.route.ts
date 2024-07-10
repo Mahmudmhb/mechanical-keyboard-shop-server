@@ -9,5 +9,7 @@ router.post(
   //   validationRequset(validationSchema.productsValidationSchema),
   ProductsController.createProducts
 );
+router.get("/", ProductsController.getAllProducts);
+router.get("/:productId", ProductsController.getSingleProducts);
 
 export const ProductRouter = router;
